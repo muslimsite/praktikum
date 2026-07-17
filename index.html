@@ -14,6 +14,15 @@
 </head>
 <body>
 
+<!-- Scroll-progress indicator -->
+<div class="lp-progress" aria-hidden="true"></div>
+
+<!-- Condensed sticky CTA bar (appears after the hero) -->
+<div class="lp-sticky" aria-hidden="true">
+  <span class="lp-sticky__brand">Хадиджа <span>умм Ильяс</span></span>
+  <a class="btn btn--primary" href="https://t.me/Hadi_UmmIlyas" target="_blank" rel="noopener">Хочу на практикум</a>
+</div>
+
 <!-- ── Hero ─────────────────────────────────────────────────── -->
 <header class="lp-hero">
   <div class="lp-hero__orb"></div>
@@ -25,7 +34,7 @@
 
   <div class="lp-wrap lp-hero__inner lp-pad">
     <div class="lp-hero-grid">
-      <div class="lp-hero__col">
+      <div class="lp-hero__col" data-reveal-group data-reveal-now data-stagger="110">
         <span class="lp-eye lp-hero__eye">практикум для сестёр</span>
         <h1 class="lp-h lp-hero__title">Заготовки без целого дня на кухне</h1>
         <p class="lp-p lp-hero__lead">За&nbsp;1&nbsp;час — 8&nbsp;видов мясных заготовок, основа для завтраков и любимые домашние соусы. Ужины закрыты почти на две недели.</p>
@@ -35,7 +44,7 @@
         </div>
       </div>
 
-      <div class="lp-hero__media">
+      <div class="lp-hero__media" data-reveal data-reveal-now style="transition-delay:.15s">
         <div class="lp-hero__frame">
           <img src="assets/img/hero.jpg" alt="Готовые мясные заготовки — котлеты с овощами, порционно упакованные" loading="eager" width="578" height="900">
         </div>
@@ -57,7 +66,7 @@
 
 <!-- ── Problem ──────────────────────────────────────────────── -->
 <section class="lp-section lp-section--cream lp-pad">
-  <div class="lp-prose">
+  <div class="lp-prose" data-reveal-group data-stagger="120">
     <span class="lp-eye">знакомо?</span>
     <h2 class="lp-h" style="font-size:var(--fs-display-lg)">Кажется, что заготовки занимают целый день?</h2>
     <p class="lp-p">Что нужно отменить все дела, закрыться на кухне с утра до вечера, приготовить десятки блюд, а потом ещё всё правильно упаковать и разложить. Именно поэтому многие сёстры так и не начинают — или пробуют один раз, устают и больше не возвращаются.</p>
@@ -67,12 +76,12 @@
 
 <!-- ── Program ──────────────────────────────────────────────── -->
 <section class="lp-section lp-section--cream-100 lp-pad">
-  <div class="lp-section-head">
+  <div class="lp-section-head" data-reveal-group data-stagger="100">
     <span class="lp-eye">а можно иначе</span>
     <h2 class="lp-h" style="font-size:var(--fs-display-lg)">Что будет на практикуме</h2>
   </div>
 
-  <div class="lp-prog-grid">
+  <div class="lp-prog-grid" data-reveal-group data-stagger="120">
     <article class="lp-card">
       <div class="lp-card__media"><img src="assets/img/p1-myaso.jpg" alt="Мясные заготовки — тефтели и котлеты, разложенные по контейнерам" loading="lazy" width="584" height="778"></div>
       <div class="lp-card__body">
@@ -105,20 +114,20 @@
 </section>
 
 <!-- ── Stat strip ───────────────────────────────────────────── -->
-<section class="lp-stats lp-pad">
-  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--green">1 час</div><div class="lp-stat__label">активной готовки</div></div>
-  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--lav">8</div><div class="lp-stat__label">видов заготовок</div></div>
-  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--green">~12</div><div class="lp-stat__label">готовых блюд</div></div>
-  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--lav">≈2 нед.</div><div class="lp-stat__label">ужинов закрыто</div></div>
+<section class="lp-stats lp-pad" data-reveal-group data-stagger="110">
+  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--green" data-count="1" data-suffix=" час">1 час</div><div class="lp-stat__label">активной готовки</div></div>
+  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--lav" data-count="8">8</div><div class="lp-stat__label">видов заготовок</div></div>
+  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--green" data-count="12" data-prefix="~">~12</div><div class="lp-stat__label">готовых блюд</div></div>
+  <div class="lp-stat"><div class="lp-stat__num lp-stat__num--lav" data-count="2" data-prefix="≈" data-suffix=" нед.">≈2 нед.</div><div class="lp-stat__label">ужинов закрыто</div></div>
 </section>
 
 <!-- ── Results ──────────────────────────────────────────────── -->
 <section class="lp-section lp-section--cream lp-pad">
-  <div class="lp-results-head">
+  <div class="lp-results-head" data-reveal-group data-stagger="100">
     <span class="lp-eye">после практикума</span>
     <h2 class="lp-h" style="font-size:var(--fs-display-lg)">Что у вас останется</h2>
   </div>
-  <ul class="lp-checklist">
+  <ul class="lp-checklist" data-reveal-group data-stagger="110">
     <li>
       <span class="lp-check" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--aubergine-950)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 L9 17 L4 12"></path></svg></span>
       <span class="lp-p">Перестанете каждый вечер начинать готовку с нуля.</span>
@@ -139,12 +148,13 @@
 </section>
 
 <!-- ── Final CTA ────────────────────────────────────────────── -->
-<section class="lp-final lp-pad">
+<section class="lp-final lp-pad" data-reveal-group data-stagger="120">
   <h2 class="lp-h lp-final__title">Меньше времени на кухне — больше на важное</h2>
   <p class="lp-p lp-final__lead">Всю подробную информацию о практикуме можно узнать в Telegram.</p>
   <a class="btn btn--primary btn--lg" href="https://t.me/Hadi_UmmIlyas" target="_blank" rel="noopener">Хочу на практикум</a>
   <a class="lp-final__handle" href="https://t.me/Hadi_UmmIlyas" target="_blank" rel="noopener">@Hadi_UmmIlyas</a>
 </section>
 
+<script src="assets/js/anim.js" defer></script>
 </body>
 </html>

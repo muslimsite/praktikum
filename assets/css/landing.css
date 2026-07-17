@@ -4,6 +4,8 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   background: var(--cream-50);
@@ -329,4 +331,124 @@ img { max-width: 100%; display: block; }
 @media (max-width: 560px) {
   .lp-stats { gap: 32px 40px; }
   .lp-stat__num { font-size: 2.4rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Premium scroll motion
+   ══════════════════════════════════════════════════════════════ */
+
+/* Scroll-progress bar (thin gradient line, top of viewport) */
+.lp-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px; width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--green-500), var(--lavender-400), var(--berry-500));
+  z-index: 60;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Sticky condensed CTA bar — slides in once the hero is scrolled past */
+.lp-sticky {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 48px;
+  background: color-mix(in srgb, var(--plum-800) 90%, transparent);
+  backdrop-filter: saturate(1.1) blur(10px);
+  -webkit-backdrop-filter: saturate(1.1) blur(10px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-100%);
+  transition: transform var(--dur-base) var(--ease-soft);
+}
+.lp-sticky.is-visible { transform: translateY(0); }
+.lp-sticky__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 1rem;
+  color: var(--cream-50);
+}
+.lp-sticky__brand span {
+  font-family: var(--font-script);
+  text-transform: none; letter-spacing: 0;
+  font-size: 1.05rem; color: var(--lavender-300);
+}
+.lp-sticky .btn { padding: 11px 26px; font-size: 0.8125rem; }
+@media (max-width: 560px) {
+  .lp-sticky { padding: 10px 20px; }
+  .lp-sticky__brand span { display: none; }
+}
+
+/* Reveal-on-scroll base state */
+[data-reveal],
+[data-reveal-group] > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-soft), transform 0.8s var(--ease-soft);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in,
+[data-reveal-group].is-in > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Card hover lift — premium tactile feedback */
+.lp-card {
+  transition: transform var(--dur-base) var(--ease-soft),
+              box-shadow var(--dur-base) var(--ease-soft);
+}
+.lp-card:not(.lp-card--dark):hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.lp-card--dark:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+/* Slow zoom on card photos while hovering */
+.lp-card__media { overflow: hidden; }
+.lp-card__media img { transition: transform var(--dur-slow) var(--ease-soft); }
+.lp-card:hover .lp-card__media img { transform: scale(1.05); }
+
+/* Gentle float on the hero badge */
+@keyframes lpBadgeFloat {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50%      { transform: rotate(-3deg) translateY(-7px); }
+}
+.lp-hero__badge { animation: lpBadgeFloat 4.5s var(--ease-soft) infinite; }
+
+/* Decorative hero orb gets a slow breathing drift */
+@keyframes lpOrbDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-18px, 14px) scale(1.06); }
+}
+.lp-hero__orb { animation: lpOrbDrift 14s var(--ease-soft) infinite; }
+
+/* Count-up numbers hold their box so layout doesn't jump */
+.lp-stat__num { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 820px) {
+  .lp-sticky { padding: 10px 24px; }
+  .lp-hero__badge {
+    animation: none; /* keep the centered translateX transform intact on mobile */
+  }
+}
+
+/* Respect reduced-motion — no reveals, no drift, no parallax */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal],
+  [data-reveal-group] > * { opacity: 1; transform: none; transition: none; }
+  .lp-hero__badge,
+  .lp-hero__orb { animation: none; }
+  .lp-card:hover,
+  .lp-card--dark:hover { transform: none; }
+  .lp-card:hover .lp-card__media img { transform: none; }
+  .lp-progress { display: none; }
 }
