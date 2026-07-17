@@ -36,8 +36,13 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   font-size: var(--fs-script-md);
   color: var(--berry-500);
-  line-height: 1;
+  /* Caveat is a handwriting face whose ink overshoots a line-height:1 box
+     (tall ascenders, low descenders, side swashes). Give it room so the
+     first/last glyphs aren't clipped — especially once the reveal layer
+     composites the element. */
+  line-height: 1.3;
   display: inline-block;
+  padding: 0 0.18em;
 }
 .lp-p {
   font-family: var(--font-body);
@@ -514,7 +519,6 @@ img { max-width: 100%; display: block; }
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s var(--ease-soft), transform 0.8s var(--ease-soft);
-  will-change: opacity, transform;
 }
 [data-reveal].is-in,
 [data-reveal-group].is-in > * {
