@@ -1,0 +1,136 @@
+/* ── Хадиджа умм Ильяс — Design tokens ─────────────────────────────
+   Colour, typography and spacing tokens for the practicum landing page.
+   Deep plum & aubergine darks, creamy warm lights, soft green + lavender
+   accents. Warm, handmade, premium — never cold or corporate.
+   Fonts are served from Google Fonts (full Cyrillic). */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap");
+
+:root {
+  /* Plum — primary brand surface (deep purple / сливовый) */
+  --plum-950: #241021;
+  --plum-900: #2E1429;
+  --plum-800: #3D1B37;
+  --plum-700: #4C2445;  /* main page background */
+  --plum-600: #5E2E55;
+  --plum-500: #723A67;
+
+  /* Aubergine — accent blocks, darkest sections (тёмный баклажан) */
+  --aubergine-950: #180A1B;
+  --aubergine-900: #211029;
+  --aubergine-800: #2C1636;
+  --aubergine-700: #3A1F45;
+
+  /* Cream — light sections, cards, product backdrops (кремово-белый) */
+  --cream-50:  #FCF8F0;
+  --cream-100: #F8F1E4;
+  --cream-200: #F0E7D5;
+  --cream-300: #E4D7C0;
+
+  /* Green — primary buttons (мягкий зелёный) */
+  --green-300: #C4D580;
+  --green-400: #B0C65F;
+  --green-500: #9CB446;
+  --green-600: #839A36;
+
+  /* Lavender — alternate buttons / soft accents (лавандовый) */
+  --lavender-200: #E4DAF3;
+  --lavender-300: #D3C2EC;
+  --lavender-400: #BFA6E0;
+  --lavender-500: #A98FD1;
+
+  /* Berry — jam drips, price highlights, decorative splashes */
+  --berry-500: #8E2F5B;
+  --berry-600: #77264B;
+
+  /* Ink — text on cream (plum-tinted, never pure black) */
+  --ink-900: #2A1526;
+  --ink-700: #4A3244;
+  --ink-500: #6E5766;
+  --ink-300: #9C8A96;
+
+  /* ── Semantic aliases ─────────────────────────────────────── */
+  --surface-page:      var(--plum-700);
+  --surface-accent:    var(--aubergine-800);
+  --surface-light:     var(--cream-100);
+  --surface-card:      var(--cream-50);
+  --surface-card-alt:  var(--cream-200);
+
+  --text-on-dark:      var(--cream-50);
+  --text-on-dark-soft: color-mix(in srgb, var(--cream-50) 72%, transparent);
+  --text-heading:      var(--ink-900);
+  --text-body:         var(--ink-700);
+  --text-muted:        var(--ink-500);
+
+  --accent-primary:    var(--green-500);
+  --accent-primary-ink:var(--aubergine-950);
+  --accent-soft:       var(--lavender-400);
+  --accent-price:      var(--green-400);
+  --accent-drip:       var(--berry-500);
+
+  --border-soft:       color-mix(in srgb, var(--ink-900) 12%, transparent);
+  --border-on-dark:    color-mix(in srgb, var(--cream-50) 16%, transparent);
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body:    "Golos Text", system-ui, sans-serif;
+  --font-script:  "Caveat", "Comic Sans MS", cursive;
+
+  --fs-display-xl: clamp(3rem, 6vw, 5.25rem);
+  --fs-display-lg: clamp(2.25rem, 4vw, 3.25rem);
+  --fs-display-md: 1.75rem;
+  --fs-display-sm: 1.25rem;
+
+  --fs-body-xl: 1.375rem;
+  --fs-body-lg: 1.125rem;
+  --fs-body-md: 1rem;
+  --fs-body-sm: 0.875rem;
+  --fs-body-xs: 0.75rem;
+
+  --fs-script-lg: 1.75rem;
+  --fs-script-md: 1.375rem;
+
+  --fw-display:      600;
+  --fw-display-bold: 700;
+  --fw-body:         400;
+  --fw-body-medium:  500;
+  --fw-body-bold:    600;
+
+  --lh-display: 1.02;
+  --lh-heading: 1.1;
+  --lh-body:    1.6;
+
+  --tracking-display: 0.14em;
+  --tracking-display-tight: 0.06em;
+  --tracking-caps: 0.22em;
+  --tracking-body: 0.005em;
+
+  /* ── Spacing, radii, shadows ──────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --radius-pill: 999px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+
+  --content-max: 1180px;
+  --content-narrow: 720px;
+
+  --shadow-sm:  0 2px 8px rgba(37, 16, 33, 0.10);
+  --shadow-md:  0 12px 30px rgba(37, 16, 33, 0.14);
+  --shadow-lg:  0 26px 60px rgba(37, 16, 33, 0.22);
+  --shadow-product: 0 34px 70px rgba(24, 10, 27, 0.40);
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur-base: 260ms;
+  --dur-slow: 480ms;
+}
