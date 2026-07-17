@@ -183,6 +183,12 @@ img { max-width: 100%; display: block; }
   aspect-ratio: 5 / 4;
   max-height: 360px;
 }
+.lp-hero__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
 .lp-hero__badge {
   position: absolute;
   bottom: -20px; left: -22px;
