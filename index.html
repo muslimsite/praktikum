@@ -74,6 +74,37 @@
   </div>
 </section>
 
+<!-- ── Калькулятор экономии времени ─────────────────────────── -->
+<section class="lp-section lp-calc lp-pad" data-reveal-group data-stagger="120" aria-labelledby="calc-title">
+  <div class="lp-calc__head">
+    <span class="lp-eye" style="color:var(--lavender-300)">посчитайте</span>
+    <h2 id="calc-title" class="lp-h" style="color:var(--cream-50);font-size:var(--fs-display-lg)">Сколько времени вы вернёте себе</h2>
+  </div>
+
+  <div class="lp-calc__card">
+    <div class="lp-calc__controls">
+      <div class="lp-calc__field">
+        <label for="calc-evenings">Готовлю ужин <b><span id="calc-evenings-val">5</span> веч.</b> в неделю</label>
+        <input id="calc-evenings" type="range" min="1" max="7" step="1" value="5" aria-describedby="calc-evenings-val">
+        <div class="lp-calc__scale"><span>1</span><span>7</span></div>
+      </div>
+      <div class="lp-calc__field">
+        <label for="calc-minutes">Каждый раз у плиты — около <b><span id="calc-minutes-val">45</span> мин</b></label>
+        <input id="calc-minutes" type="range" min="20" max="90" step="5" value="45" aria-describedby="calc-minutes-val">
+        <div class="lp-calc__scale"><span>20</span><span>90</span></div>
+      </div>
+    </div>
+
+    <div class="lp-calc__result" aria-live="polite">
+      <div class="lp-calc__big"><span data-calc-hours>11</span> <span class="lp-calc__unit">ч / мес</span></div>
+      <div class="lp-calc__sub">свободного времени с заготовками</div>
+      <div class="lp-calc__pill">это&nbsp;≈&nbsp;<span data-calc-days>5</span> дней в год</div>
+    </div>
+  </div>
+
+  <p class="lp-calc__note">Оценка примерная: практикум превращает готовку «с нуля» каждый вечер в час заготовок и короткий разогрев. Подвигайте ползунки — под ваш ритм.</p>
+</section>
+
 <!-- ── Program ──────────────────────────────────────────────── -->
 <section class="lp-section lp-section--cream-100 lp-pad">
   <div class="lp-section-head" data-reveal-group data-stagger="100">

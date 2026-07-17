@@ -120,9 +120,90 @@
     update();
   }
 
+  /* ── 4. Time-savings calculator ──────────────────────────────── */
+  function setupCalc() {
+    var ev = document.getElementById("calc-evenings");
+    var mn = document.getElementById("calc-minutes");
+    var evVal = document.getElementById("calc-evenings-val");
+    var mnVal = document.getElementById("calc-minutes-val");
+    var hoursEl = document.querySelector("[data-calc-hours]");
+    var daysEl = document.querySelector("[data-calc-days]");
+    if (!ev || !mn || !hoursEl || !daysEl) return;
+
+    var WEEKS = 4.3;              // avg weeks per month
+    var COVER = 12;              // dinners covered by one 1-hour batch (page stat)
+    var BATCH_MIN = 60;         // minutes per batch session
+    var REHEAT_MIN = 10;        // minutes to finish/reheat a prepped dinner
+
+    function compute(evenings, minutes) {
+      var dinners = evenings * WEEKS;
+      var scratch = dinners * minutes;                 // min/month cooking from zero
+      var withPrep = (dinners / COVER) * BATCH_MIN + dinners * REHEAT_MIN;
+      var savedMin = Math.max(0, scratch - withPrep);
+      var hours = savedMin / 60;
+      return { hours: Math.round(hours), days: Math.round((hours * 12) / 24) };
+    }
+
+    // Smoothly animate a number element towards a target value.
+    function animateTo(el, target) {
+      if (reduce) { el.textContent = target; return; }
+      var from = parseInt(el.textContent, 10);
+      if (isNaN(from)) from = 0;
+      if (from === target) { el.textContent = target; return; }
+      if (el.__raf) cancelAnimationFrame(el.__raf);
+      var dur = 500, start = null;
+      function ease(t) { return 1 - Math.pow(1 - t, 3); }
+      function tick(ts) {
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        el.textContent = Math.round(from + (target - from) * ease(p));
+        if (p < 1) el.__raf = requestAnimationFrame(tick);
+      }
+      el.__raf = requestAnimationFrame(tick);
+    }
+
+    var revealed = false;
+    function update(animate) {
+      var e = parseInt(ev.value, 10);
+      var m = parseInt(mn.value, 10);
+      if (evVal) evVal.textContent = e;
+      if (mnVal) mnVal.textContent = m;
+      var r = compute(e, m);
+      if (animate) {
+        animateTo(hoursEl, r.hours);
+        animateTo(daysEl, r.days);
+      } else {
+        hoursEl.textContent = r.hours;
+        daysEl.textContent = r.days;
+      }
+    }
+
+    ev.addEventListener("input", function () { update(false); });
+    mn.addEventListener("input", function () { update(false); });
+
+    // Count up from zero the first time the calculator scrolls into view.
+    var card = document.querySelector(".lp-calc__card");
+    if (reduce || !("IntersectionObserver" in window) || !card) {
+      update(false);
+      return;
+    }
+    hoursEl.textContent = "0";
+    daysEl.textContent = "0";
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting || revealed) return;
+        revealed = true;
+        update(true);
+        obs.disconnect();
+      });
+    }, { threshold: 0.4 });
+    io.observe(card);
+  }
+
   function init() {
     setupReveal();
     setupScrollChrome();
+    setupCalc();
   }
 
   if (document.readyState === "loading") {
